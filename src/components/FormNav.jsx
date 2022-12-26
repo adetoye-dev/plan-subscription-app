@@ -5,8 +5,8 @@ const NavItem = ({ step, text }) => {
         {step}
       </div>
       <div className="info hidden md:block">
-        <span className="text-sm">STEP {step}</span>
-        <div className="uppercase font-bold">{text}</div>
+        <span className="text-xs">STEP {step}</span>
+        <div className="uppercase font-bold text-sm">{text}</div>
       </div>
     </div>
   );

@@ -15,11 +15,21 @@ export const useUserAddOns = () => {
 };
 
 const FormContext = ({ children }) => {
-  const data = "hello world";
+  const [data, setUserData] = useState({
+    username: "",
+    email: "",
+    phone: "",
+  });
+
+  const handleUserDataChange = (type, input) => {
+    setUserData((prevUserData) => {
+      return { ...prevUserData, [type]: input };
+    });
+  };
   const plans = "we have plans";
   const addOns = "selected AddOns";
   return (
-    <userData.Provider value={[data, plans]}>
+    <userData.Provider value={[data, handleUserDataChange]}>
       <userPlans.Provider value={plans}>
         <userAddOns.Provider value={addOns}>{children}</userAddOns.Provider>
       </userPlans.Provider>

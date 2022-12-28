@@ -95,8 +95,8 @@ const Plans = () => {
         </div>
       </div>
       <div className="btns bg-white p-4 md:p-0 flex justify-between items-center">
-        <Prev />
-        <Next />
+        <Prev link="/" />
+        <Next link="/add-ons" />
       </div>
     </>
   );

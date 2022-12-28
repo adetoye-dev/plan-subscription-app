@@ -1,5 +1,6 @@
 import FormHeader from "./FormHeader";
 import { Prev, Confirm } from "./Buttons";
+import { Navigate } from "react-router-dom";
 
 const AddOnSummaryCard = ({ title, price }) => {
   return (
@@ -40,7 +41,7 @@ const Summary = () => {
         </div>
       </div>
       <div className="btns bg-white p-4 md:p-0 flex justify-between items-center">
-        <Prev />
+        <Prev link="/add-ons" />
         <Confirm />
       </div>
     </>

@@ -3,8 +3,14 @@ import { Prev, Next } from "./Buttons";
 import FormHeader from "./FormHeader";
 
 const PlanCard = ({ icon, plan, price, discount }) => {
+  const [selected, setSelected] = useState(false);
+
   return (
-    <div className="flex p-3 w-full border-2 border-light-gray rounded-md gap-5 items-center md:flex-col md:items-start md:gap-7">
+    <div
+      className={`flex p-3 w-full border-2 ${
+        selected ? "border-purplish-blue" : "border-light-gray"
+      } hover:border-purplish-blue rounded-md gap-5 items-center md:flex-col md:items-start md:gap-7`}
+    >
       <div className="icon">
         <img src={`/images/${icon}`} alt="plan-icon" />
       </div>

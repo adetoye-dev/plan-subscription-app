@@ -46,7 +46,9 @@ const AddOns = () => {
                   title={item.title}
                   desc={item.desc}
                   price={
-                    showMonthlyPlan ? item.price.monthly : item.price.yearly
+                    showMonthlyPlan
+                      ? `+$${item.price.monthly}/mo`
+                      : `+$${item.price.yearly}/yr`
                   }
                   selected={item.selected}
                   toggleSelect={toggleSelect}

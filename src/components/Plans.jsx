@@ -43,7 +43,9 @@ const Plans = () => {
                   key={item.plan}
                   plan={item.plan}
                   price={
-                    showMonthlyPlan ? item.price.monthly : item.price.yearly
+                    showMonthlyPlan
+                      ? `$${item.price.monthly}/mo`
+                      : `$${item.price.yearly}/yr`
                   }
                   icon={item.icon}
                   discount={showMonthlyPlan ? false : true}

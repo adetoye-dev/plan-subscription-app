@@ -9,19 +9,19 @@ const PlansContext = ({ children }) => {
   const [plans, setMonthlyPlans] = useState([
     {
       plan: "arcade",
-      price: { monthly: "$9/mo", yearly: "$90/yr" },
+      price: { monthly: 9, yearly: 90 },
       icon: "icon-arcade.svg",
       selected: false,
     },
     {
       plan: "advanced",
-      price: { monthly: "$12/mo", yearly: "$120/yr" },
+      price: { monthly: 12, yearly: 120 },
       icon: "icon-advanced.svg",
       selected: false,
     },
     {
       plan: "pro",
-      price: { monthly: "$15/mo", yearly: "$150/yr" },
+      price: { monthly: 15, yearly: 150 },
       icon: "icon-pro.svg",
       selected: false,
     },

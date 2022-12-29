@@ -7,19 +7,19 @@ const AddOnsContext = ({ children }) => {
     {
       title: "Online service",
       desc: "Access to multiplayer games",
-      price: { monthly: "+$1/mo", yearly: "+$10/yr" },
+      price: { monthly: 1, yearly: 10 },
       selected: false,
     },
     {
       title: "Larger storage",
       desc: "Extra 1TB of cloud save",
-      price: { monthly: "+$2/mo", yearly: "+$20/yr" },
+      price: { monthly: 2, yearly: 20 },
       selected: false,
     },
     {
       title: "Customizable profile",
       desc: "Custom theme on your profile",
-      price: { monthly: "+$2/mo", yearly: "+$20/yr" },
+      price: { monthly: 2, yearly: 20 },
       selected: false,
     },
   ]);

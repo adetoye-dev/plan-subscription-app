@@ -1,15 +1,15 @@
 import { useState } from "react";
+import { useUserPlans } from "../contexts/FormContext";
 import { Prev, Next } from "./Buttons";
 import FormHeader from "./FormHeader";
 
-const PlanCard = ({ icon, plan, price, discount }) => {
-  const [selected, setSelected] = useState(false);
-
+const PlanCard = ({ icon, plan, price, discount, selected, toggleSelect }) => {
   return (
     <div
       className={`flex p-3 w-full border-2 ${
         selected ? "border-purplish-blue" : "border-light-gray"
-      } hover:border-purplish-blue rounded-md gap-5 items-center md:flex-col md:items-start md:gap-7`}
+      } hover:border-purplish-blue rounded-md gap-5 items-center cursor-pointer md:flex-col md:items-start md:gap-7`}
+      onClick={() => toggleSelect(plan)}
     >
       <div className="icon">
         <img src={`/images/${icon}`} alt="plan-icon" />
@@ -26,11 +26,7 @@ const PlanCard = ({ icon, plan, price, discount }) => {
 };
 
 const Plans = () => {
-  const [showMonthlyPlan, setShowMonthlyPlan] = useState(true);
-
-  const togglePlans = () => {
-    setShowMonthlyPlan((prevMonthlyPlan) => !prevMonthlyPlan);
-  };
+  const { plans, togglePlans, showMonthlyPlan, toggleSelect } = useUserPlans();
 
   return (
     <>
@@ -40,38 +36,23 @@ const Plans = () => {
           desc="You have the option of monthly or yearly billing."
         />
         <div className="plans-container mt-5 md:mt-8">
-          {showMonthlyPlan ? (
-            <div className="monthly-cards flex flex-col md:flex-row gap-3">
-              <PlanCard plan="arcade" price="$9/mo" icon="icon-arcade.svg" />
-              <PlanCard
-                plan="advanced"
-                price="$12/mo"
-                icon="icon-advanced.svg"
-              />
-              <PlanCard plan="pro" price="$15/mo" icon="icon-pro.svg" />
-            </div>
-          ) : (
-            <div className="yearly-cards flex flex-col md:flex-row gap-3">
-              <PlanCard
-                plan="arcade"
-                price="$90/yr"
-                icon="icon-arcade.svg"
-                discount={true}
-              />
-              <PlanCard
-                plan="advanced"
-                price="$120/yr"
-                icon="icon-advanced.svg"
-                discount={true}
-              />
-              <PlanCard
-                plan="pro"
-                price="$150/yr"
-                icon="icon-pro.svg"
-                discount={true}
-              />
-            </div>
-          )}
+          <div className="flex flex-col md:flex-row gap-3">
+            {plans.map((item) => {
+              return (
+                <PlanCard
+                  key={item.plan}
+                  plan={item.plan}
+                  price={
+                    showMonthlyPlan ? item.price.monthly : item.price.yearly
+                  }
+                  icon={item.icon}
+                  discount={showMonthlyPlan ? false : true}
+                  selected={item.selected}
+                  toggleSelect={toggleSelect}
+                />
+              );
+            })}
+          </div>
         </div>
         <div className="toggle-plans font-medium text-sm flex items-center justify-center rounded-md mt-5 gap-6 py-3 bg-alabaster">
           <span

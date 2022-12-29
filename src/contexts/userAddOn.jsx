@@ -24,6 +24,8 @@ const AddOnsContext = ({ children }) => {
     },
   ]);
 
+  const selectedAddOns = addOns.filter((item) => item.selected === true);
+
   const toggleSelect = (addOn) => {
     setAddOns((prevAddOns) => {
       return prevAddOns.map((item) => {

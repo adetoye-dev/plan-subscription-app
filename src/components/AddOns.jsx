@@ -29,7 +29,7 @@ const AddOnCard = ({ title, price, desc, selected, toggleSelect }) => {
 
 const AddOns = () => {
   const { showMonthlyPlan } = useUserPlans();
-  const [addOns, toggleSelect] = useUserAddOns();
+  const { addOns, toggleSelect } = useUserAddOns();
   return (
     <>
       <div className="form mx-4 md:m-0 px-5 py-7 md:p-0 rounded-lg md:rounded-none bg-white">

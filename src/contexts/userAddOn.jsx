@@ -37,7 +37,13 @@ const AddOnsContext = ({ children }) => {
   };
 
   return (
-    <userAddOns.Provider value={[addOns, toggleSelect]}>
+    <userAddOns.Provider
+      value={{
+        addOns: addOns,
+        toggleSelect: toggleSelect,
+        selectedAddOns: selectedAddOns,
+      }}
+    >
       {children}
     </userAddOns.Provider>
   );

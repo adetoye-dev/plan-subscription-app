@@ -2,7 +2,7 @@ import FormHeader from "./FormHeader";
 import { Prev, Confirm } from "./Buttons";
 import { Link, Navigate } from "react-router-dom";
 import { useUserAddOns, useUserPlans } from "../contexts/FormContext";
-import { userAddOns } from "../contexts/userAddOn";
+import { useState } from "react";
 
 const AddOnSummaryCard = ({ title, price }) => {
   return (
@@ -16,6 +16,7 @@ const AddOnSummaryCard = ({ title, price }) => {
 const Summary = () => {
   const { selectedPlans, showMonthlyPlan } = useUserPlans();
   const { selectedAddOns } = useUserAddOns();
+  const [clear, setClear] = useState(false);
 
   const AddAllPrices = (arr) => {
     let totalPrice = 0;
@@ -30,8 +31,13 @@ const Summary = () => {
   const totalAddOnPrices =
     selectedAddOns.length > 0 ? AddAllPrices(selectedAddOns) : 0;
 
+  const submitForm = () => {
+    setClear(true);
+  };
+
   return (
     <>
+      {clear ? <Navigate to="/thank-you" /> : ""}
       <div className="form mx-4 md:m-0 px-5 py-7 md:p-0 rounded-lg md:rounded-none bg-white">
         <FormHeader
           title="Finishing up"
@@ -95,7 +101,7 @@ const Summary = () => {
       </div>
       <div className="btns bg-white p-4 md:p-0 flex justify-between items-center">
         <Prev link="/add-ons" />
-        <Confirm />
+        <Confirm action={submitForm} />
       </div>
     </>
   );

@@ -91,8 +91,8 @@ const Summary = () => {
           {selectedPlans.length > 0 ? (
             <p className="font-bold text-lg text-purplish-blue">
               {showMonthlyPlan
-                ? `+$${selectedPlans[0].price.monthly + totalAddOnPrices}`
-                : `+$${selectedPlans[0].price.yearly + totalAddOnPrices}`}
+                ? `+$${selectedPlans[0].price.monthly + totalAddOnPrices}/mo`
+                : `+$${selectedPlans[0].price.yearly + totalAddOnPrices}/yr`}
             </p>
           ) : (
             ""

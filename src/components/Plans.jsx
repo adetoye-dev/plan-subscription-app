@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useUserPlans } from "../contexts/FormContext";
 import { Prev, Next } from "./Buttons";
 import FormHeader from "./FormHeader";
@@ -26,10 +27,22 @@ const PlanCard = ({ icon, plan, price, discount, selected, toggleSelect }) => {
 };
 
 const Plans = () => {
-  const { plans, togglePlans, showMonthlyPlan, toggleSelect } = useUserPlans();
+  const { plans, togglePlans, showMonthlyPlan, toggleSelect, selectedPlans } =
+    useUserPlans();
 
+  const [errors, setErrors] = useState(false);
+  const [validSelection, setValidSelection] = useState(false);
+
+  const validateSelection = () => {
+    if (selectedPlans.length <= 0) {
+      setErrors(true);
+    } else {
+      setValidSelection(true);
+    }
+  };
   return (
     <>
+      {validSelection && <Navigate to="/add-ons" />}
       <div className="form mx-4 md:m-0 px-5 py-7 md:p-0 rounded-lg md:rounded-none bg-white">
         <FormHeader
           title="Select your plan"
@@ -76,10 +89,17 @@ const Plans = () => {
             Yearly
           </span>
         </div>
+        {errors && selectedPlans <= 0 ? (
+          <div className="text-sm font-semibold text-strawberry-red text-center">
+            No plans selected!
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="btns bg-white p-4 md:p-0 flex justify-between items-center">
         <Prev link="/" />
-        <Next link="/add-ons" />
+        <Next action={validateSelection} />
       </div>
     </>
   );

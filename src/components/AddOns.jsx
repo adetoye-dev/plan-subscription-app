@@ -1,15 +1,12 @@
 import FormHeader from "./FormHeader";
 import { Prev, Next } from "./Buttons";
 import { useState } from "react";
+import { useUserAddOns, useUserPlans } from "../contexts/FormContext";
 
-const AddOnCard = ({ title, price, desc }) => {
-  const [selected, setSelected] = useState(false);
-  const toggleSelect = () => {
-    setSelected((prevSelect) => !prevSelect);
-  };
+const AddOnCard = ({ title, price, desc, selected, toggleSelect }) => {
   return (
     <div
-      onClick={toggleSelect}
+      onClick={() => toggleSelect(title)}
       className={`flex items-center gap-3 text-xs p-3 border-2 rounded-md cursor-pointer ${
         selected ? "border-purplish-blue bg-magnolia" : "border-light-gray"
       } `}
@@ -30,7 +27,9 @@ const AddOnCard = ({ title, price, desc }) => {
   );
 };
 
-const AddOns = ({ monthly }) => {
+const AddOns = () => {
+  const { showMonthlyPlan } = useUserPlans();
+  const [addOns, toggleSelect] = useUserAddOns();
   return (
     <>
       <div className="form mx-4 md:m-0 px-5 py-7 md:p-0 rounded-lg md:rounded-none bg-white">
@@ -39,43 +38,22 @@ const AddOns = ({ monthly }) => {
           desc="Add-ons help enhance your gaming experience."
         />
         <div className="add-ons md:mt-5 mt-3">
-          {monthly ? (
-            <div className="monthly-add-ons flex flex-col gap-3">
-              <AddOnCard
-                title="Online service"
-                desc="Access to multiplayer games"
-                price="+$1/mo"
-              />
-              <AddOnCard
-                title="Larger storage"
-                desc="Extra 1TB of cloud save"
-                price="+$2/mo"
-              />
-              <AddOnCard
-                title="Customizable profile"
-                desc="Custom theme on your profile"
-                price="+$2/mo"
-              />
-            </div>
-          ) : (
-            <div className="yearly-add-ons flex flex-col gap-3">
-              <AddOnCard
-                title="Online service"
-                desc="Access to multiplayer games"
-                price="+$10/yr"
-              />
-              <AddOnCard
-                title="Larger storage"
-                desc="Extra 1TB of cloud save"
-                price="+$20/yr"
-              />
-              <AddOnCard
-                title="Customizable profile"
-                desc="Custom theme on your profile"
-                price="+$20/yr"
-              />
-            </div>
-          )}
+          <div className="monthly-add-ons flex flex-col gap-3">
+            {addOns.map((item) => {
+              return (
+                <AddOnCard
+                  key={item.title}
+                  title={item.title}
+                  desc={item.desc}
+                  price={
+                    showMonthlyPlan ? item.price.monthly : item.price.yearly
+                  }
+                  selected={item.selected}
+                  toggleSelect={toggleSelect}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="btns bg-white p-4 md:p-0 flex justify-between items-center">

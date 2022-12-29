@@ -1,10 +1,29 @@
 import { Next } from "./Buttons";
 import FormHeader from "./FormHeader";
 import { useUserData } from "../contexts/FormContext";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 const PersonalInfo = () => {
+  const [userData, setUserData] = useUserData();
+  const [invalidInput, setInvalidInput] = useState(false);
+  const [allValidInputs, setAllValidInputs] = useState(false);
+
+  const validateInput = () => {
+    if (
+      userData.username.length <= 0 ||
+      userData.email.length <= 0 ||
+      userData.phone.length <= 0
+    ) {
+      setInvalidInput(true);
+    } else {
+      setAllValidInputs(true);
+    }
+  };
+
   return (
     <>
+      {allValidInputs && <Navigate to="/plans" />}
       <div className="form mx-4 md:m-0 px-5 py-7 md:p-0 rounded-lg md:rounded-none bg-white">
         <FormHeader
           title="Personal info"
@@ -12,39 +31,82 @@ const PersonalInfo = () => {
         />
         <div className="form-inputs flex flex-col gap-5 mt-5">
           <div className="flex flex-col">
-            <label className="text-marine-blue text-sm">Name</label>
+            <label className="text-marine-blue text-sm font-semibold flex items-center justify-between">
+              <span>Name</span>
+              {invalidInput && userData.username <= 0 ? (
+                <span className="text-strawberry-red">
+                  This field is required
+                </span>
+              ) : (
+                ""
+              )}
+            </label>
             <input
               type="text"
+              value={userData.username}
+              onChange={(e) => setUserData("username", e.target.value)}
               placeholder="e.g. Stephen King"
               required
               autoComplete="no"
-              className="px-3 py-2 border-2 rounded-md border-light-gray text-marine-blue cursor-pointer focus:outline-purplish-blue"
+              className={`px-3 py-2 border-2 rounded-md ${
+                invalidInput && userData.username <= 0
+                  ? "border-strawberry-red"
+                  : "border-light-gray"
+              } text-marine-blue cursor-pointer caret-marine-blue focus:outline-purplish-blue`}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-marine-blue text-sm">Email Address</label>
+            <label className="text-marine-blue text-sm font-semibold flex items-center justify-between">
+              <span>Email Address</span>
+              {invalidInput && userData.email <= 0 ? (
+                <span className="text-strawberry-red">
+                  This field is required
+                </span>
+              ) : (
+                ""
+              )}
+            </label>
             <input
               type="email"
+              value={userData.email}
+              onChange={(e) => setUserData("email", e.target.value)}
               placeholder="e.g. stephenking@lorem.com"
-              required
               autoComplete="no"
-              className="px-3 py-2 border-2 rounded-md border-light-gray text-marine-blue cursor-pointer focus:outline-purplish-blue"
+              className={`px-3 py-2 border-2 rounded-md ${
+                invalidInput && userData.email <= 0
+                  ? "border-strawberry-red"
+                  : "border-light-gray"
+              } text-marine-blue cursor-pointer caret-marine-blue focus:outline-purplish-blue`}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-marine-blue text-sm">Phone Number</label>
+            <label className="text-marine-blue text-sm font-semibold flex items-center justify-between">
+              <span>Phone Number</span>
+              {invalidInput && userData.phone <= 0 ? (
+                <span className="text-strawberry-red">
+                  This field is required
+                </span>
+              ) : (
+                ""
+              )}
+            </label>
             <input
               type="tel"
+              value={userData.phone}
+              onChange={(e) => setUserData("phone", e.target.value)}
               placeholder="e.g. +1 234 567 890"
-              required
               autoComplete="no"
-              className="px-3 py-2 border-2 rounded-md border-light-gray text-marine-blue cursor-pointer focus:outline-purplish-blue"
+              className={`px-3 py-2 border-2 rounded-md ${
+                invalidInput && userData.phone <= 0
+                  ? "border-strawberry-red"
+                  : "border-light-gray"
+              } text-marine-blue cursor-pointer caret-marine-blue focus:outline-purplish-blue`}
             />
           </div>
         </div>
       </div>
       <div className="btns bg-white p-4 md:p-0 flex justify-end items-center">
-        <Next />
+        <Next action={validateInput} />
       </div>
     </>
   );

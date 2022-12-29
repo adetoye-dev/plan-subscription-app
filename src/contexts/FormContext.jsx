@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
+import { userPlans } from "./userPlan";
+import PlansContext from "./userPlan";
+import { userAddOns } from "./userAddOn";
+import AddOnsContext from "./userAddOn";
 
 const userData = React.createContext();
-const userPlans = React.createContext();
-const userAddOns = React.createContext();
 
 export const useUserData = () => {
   return useContext(userData);
@@ -26,13 +28,12 @@ const FormContext = ({ children }) => {
       return { ...prevUserData, [type]: input };
     });
   };
-  const plans = "we have plans";
-  const addOns = "selected AddOns";
+
   return (
     <userData.Provider value={[data, handleUserDataChange]}>
-      <userPlans.Provider value={plans}>
-        <userAddOns.Provider value={addOns}>{children}</userAddOns.Provider>
-      </userPlans.Provider>
+      <PlansContext>
+        <AddOnsContext>{children}</AddOnsContext>
+      </PlansContext>
     </userData.Provider>
   );
 };

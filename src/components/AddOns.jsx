@@ -7,7 +7,7 @@ const AddOnCard = ({ title, price, desc, selected, toggleSelect }) => {
   return (
     <div
       onClick={() => toggleSelect(title)}
-      className={`flex items-center gap-3 text-xs p-3 border-2 rounded-md cursor-pointer ${
+      className={`flex items-center gap-3 hover:border-purplish-blue text-xs p-3 border-2 rounded-md cursor-pointer ${
         selected ? "border-purplish-blue bg-magnolia" : "border-light-gray"
       } `}
     >

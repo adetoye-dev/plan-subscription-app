@@ -46,8 +46,6 @@ const PersonalInfo = () => {
               value={userData.username}
               onChange={(e) => setUserData("username", e.target.value)}
               placeholder="e.g. Stephen King"
-              required
-              autoComplete="no"
               className={`px-3 py-2 border-2 rounded-md ${
                 invalidInput && userData.username <= 0
                   ? "border-strawberry-red"
@@ -71,7 +69,6 @@ const PersonalInfo = () => {
               value={userData.email}
               onChange={(e) => setUserData("email", e.target.value)}
               placeholder="e.g. stephenking@lorem.com"
-              autoComplete="no"
               className={`px-3 py-2 border-2 rounded-md ${
                 invalidInput && userData.email <= 0
                   ? "border-strawberry-red"
@@ -95,7 +92,6 @@ const PersonalInfo = () => {
               value={userData.phone}
               onChange={(e) => setUserData("phone", e.target.value)}
               placeholder="e.g. +1 234 567 890"
-              autoComplete="no"
               className={`px-3 py-2 border-2 rounded-md ${
                 invalidInput && userData.phone <= 0
                   ? "border-strawberry-red"

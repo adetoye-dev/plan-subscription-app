@@ -66,7 +66,7 @@ const Summary = () => {
             </div>
           )}
           <hr className="my-5 border-cool-gray" />
-          {selectedAddOns.length > 0 && (
+          {selectedAddOns.length > 0 ? (
             <div className="selected-add-ons text-sm flex flex-col gap-3 font-medium">
               {selectedAddOns.map((item) => {
                 return (
@@ -82,6 +82,8 @@ const Summary = () => {
                 );
               })}
             </div>
+          ) : (
+            <p className="text-cool-gray text-sm">No add-ons selected</p>
           )}
         </div>
         <div className="total flex items-center justify-between mt-5">

@@ -8,13 +8,13 @@ const AddOnsContext = ({ children }) => {
       title: "Online service",
       desc: "Access to multiplayer games",
       price: { monthly: 1, yearly: 10 },
-      selected: false,
+      selected: true,
     },
     {
       title: "Larger storage",
       desc: "Extra 1TB of cloud save",
       price: { monthly: 2, yearly: 20 },
-      selected: false,
+      selected: true,
     },
     {
       title: "Customizable profile",

@@ -11,7 +11,7 @@ const PlansContext = ({ children }) => {
       plan: "arcade",
       price: { monthly: 9, yearly: 90 },
       icon: "icon-arcade.svg",
-      selected: false,
+      selected: true,
     },
     {
       plan: "advanced",
@@ -33,7 +33,7 @@ const PlansContext = ({ children }) => {
     setMonthlyPlans((prevMonthlyPlan) => {
       return prevMonthlyPlan.map((item) => {
         return item.plan === planName
-          ? { ...item, selected: !item.selected }
+          ? { ...item, selected: true }
           : { ...item, selected: false };
       });
     });

@@ -9,7 +9,7 @@ import ThankYou from "./components/ThankYou";
 
 const SharedLayout = () => {
   return (
-    <div className="App flex w-full h-screen bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-none bg-no-repeat">
+    <div className="App flex bg-[length:100%_auto] w-full h-screen bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-none bg-no-repeat">
       <div className="form-container flex md:justify-between flex-col md:flex-row md:bg-white w-full max-w-3xl h-full md:h-3/4 m-auto md:rounded-xl md:p-3.5">
         <FormNav />
         <div className="forms md:w-2/3 h-full md:px-12 md:py-6 flex flex-col justify-between gap-5">

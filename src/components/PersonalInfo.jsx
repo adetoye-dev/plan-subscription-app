@@ -3,11 +3,28 @@ import FormHeader from "./FormHeader";
 import { useUserData } from "../contexts/FormContext";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import emailValidation from "../apis/emailValidation";
 
 const PersonalInfo = () => {
+  const [emailIsValid, setEmailIsValid] = useState(false);
   const [userData, setUserData] = useUserData();
   const [invalidInput, setInvalidInput] = useState(false);
   const [allValidInputs, setAllValidInputs] = useState(false);
+
+  const validateEmail = async (userEmail) => {
+    const response = await emailValidation
+      .get("/", {
+        params: {
+          email: userEmail,
+        },
+      })
+      .catch((err) => console.log(err.response.data.error.message));
+    setEmailIsValid(response.data.is_smtp_valid.value);
+    console.log(response.data);
+  };
+
+  // console.log(emailIsValid);
+  // // validateEmail("webeagledesigns");
 
   const validateInput = () => {
     if (

@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import emailValidation from "../apis/emailValidation";
 
 const PersonalInfo = () => {
-  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const [userData, setUserData] = useUserData();
   const [invalidInput, setInvalidInput] = useState(false);
   const [allValidInputs, setAllValidInputs] = useState(false);
@@ -19,17 +19,15 @@ const PersonalInfo = () => {
         },
       })
       .catch((err) => console.log(err.response.data.error.message));
-    setEmailIsValid(response.data.is_smtp_valid.value);
-    console.log(response.data);
+
+    setIsValidEmail(response.data.is_smtp_valid.value);
+    return response.data.is_smtp_valid.value;
   };
 
-  // console.log(emailIsValid);
-  // // validateEmail("webeagledesigns");
-
-  const validateInput = () => {
+  const validateInput = async () => {
     if (
       userData.username.length <= 0 ||
-      userData.email.length <= 0 ||
+      !(await validateEmail(userData.email)) ||
       userData.phone.length <= 0
     ) {
       setInvalidInput(true);
@@ -73,9 +71,9 @@ const PersonalInfo = () => {
           <div className="flex flex-col">
             <label className="text-marine-blue text-sm font-semibold flex items-center justify-between">
               <span>Email Address</span>
-              {invalidInput && userData.email <= 0 ? (
+              {invalidInput && !isValidEmail ? (
                 <span className="text-strawberry-red">
-                  This field is required
+                  Enter a valid email address
                 </span>
               ) : (
                 ""

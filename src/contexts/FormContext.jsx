@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { userPlans } from "./userPlan";
 import PlansContext from "./userPlan";
 import { userAddOns } from "./userAddOn";
@@ -29,8 +29,10 @@ const FormContext = ({ children }) => {
     });
   };
 
+  const contextValues = useMemo(() => [data, handleUserDataChange], [data]);
+
   return (
-    <userData.Provider value={[data, handleUserDataChange]}>
+    <userData.Provider value={contextValues}>
       <PlansContext>
         <AddOnsContext>{children}</AddOnsContext>
       </PlansContext>

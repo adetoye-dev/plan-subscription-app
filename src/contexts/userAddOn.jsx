@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 export const userAddOns = React.createContext();
 
@@ -36,16 +36,17 @@ const AddOnsContext = ({ children }) => {
     });
   };
 
+  const contextValues = useMemo(
+    () => ({
+      addOns: addOns,
+      toggleSelect: toggleSelect,
+      selectedAddOns: selectedAddOns,
+    }),
+    [addOns]
+  );
+
   return (
-    <userAddOns.Provider
-      value={{
-        addOns: addOns,
-        toggleSelect: toggleSelect,
-        selectedAddOns: selectedAddOns,
-      }}
-    >
-      {children}
-    </userAddOns.Provider>
+    <userAddOns.Provider value={contextValues}>{children}</userAddOns.Provider>
   );
 };
 

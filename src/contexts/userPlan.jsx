@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export const userPlans = React.createContext();
 
@@ -42,18 +42,20 @@ const PlansContext = ({ children }) => {
   const togglePlans = () => {
     setShowMonthlyPlan((prevMonthlyPlan) => !prevMonthlyPlan);
   };
+
+  const contextValues = useMemo(
+    () => ({
+      plans: plans,
+      togglePlans: togglePlans,
+      showMonthlyPlan: showMonthlyPlan,
+      toggleSelect: toggleSelect,
+      selectedPlans: selectedPlans,
+    }),
+    [plans, showMonthlyPlan]
+  );
+
   return (
-    <userPlans.Provider
-      value={{
-        plans: plans,
-        togglePlans: togglePlans,
-        showMonthlyPlan: showMonthlyPlan,
-        toggleSelect: toggleSelect,
-        selectedPlans: selectedPlans,
-      }}
-    >
-      {children}
-    </userPlans.Provider>
+    <userPlans.Provider value={contextValues}>{children}</userPlans.Provider>
   );
 };
 

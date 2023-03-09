@@ -8,21 +8,33 @@ const PlansContext = ({ children }) => {
 
   const [plans, setMonthlyPlans] = useState([
     {
-      plan: "arcade",
+      plan: "basic",
       price: { monthly: 9, yearly: 90 },
       icon: "icon-arcade.svg",
+      subscriptionId: {
+        monthly: "PLN_rlcxuq41da952gg",
+        yearly: "PLN_5ml5r116jgrv97a",
+      },
       selected: true,
     },
     {
-      plan: "advanced",
+      plan: "pro",
       price: { monthly: 12, yearly: 120 },
       icon: "icon-advanced.svg",
+      subscriptionId: {
+        monthly: "PLN_4m4jpyidpw4f0mn",
+        yearly: "PLN_nlcj0o6kyui7xno",
+      },
       selected: false,
     },
     {
-      plan: "pro",
+      plan: "advanced",
       price: { monthly: 15, yearly: 150 },
       icon: "icon-pro.svg",
+      subscriptionId: {
+        monthly: "PLN_3qjh3bobanyt2mz",
+        yearly: "PLN_1o1w8vltxo1kiju",
+      },
       selected: false,
     },
   ]);

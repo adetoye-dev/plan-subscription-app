@@ -14,7 +14,7 @@ const AddOnSummaryCard = ({ title, price }) => {
 };
 
 const Summary = () => {
-  const { selectedPlans, showMonthlyPlan } = useUserPlans();
+  const { selectedPlan, showMonthlyPlan } = useUserPlans();
   const { selectedAddOns } = useUserAddOns();
   const [clear, setClear] = useState(false);
 
@@ -44,11 +44,11 @@ const Summary = () => {
           desc="Double-check everything looks OK before confirming."
         />
         <div className="summary-card p-3 md:p-5 bg-magnolia mt-3 md:mt-5 rounded-md text-marine-blue">
-          {selectedPlans.length > 0 && (
+          {selectedPlan && (
             <div className="selected-plan flex items-center justify-between">
               <div>
                 <h1 className="title font-bold capitalize">
-                  {`${selectedPlans[0].plan} ${
+                  {`${selectedPlan.plan} ${
                     showMonthlyPlan ? "(Monthly)" : "(Yearly)"
                   }`}
                 </h1>
@@ -60,8 +60,8 @@ const Summary = () => {
               </div>
               <div className="price font-bold">
                 {showMonthlyPlan
-                  ? `$${selectedPlans[0].price.monthly}/mo`
-                  : `$${selectedPlans[0].price.yearly}/yr`}
+                  ? `$${selectedPlan.price.monthly}/mo`
+                  : `$${selectedPlan.price.yearly}/yr`}
               </div>
             </div>
           )}
@@ -90,11 +90,11 @@ const Summary = () => {
           <p className="text-cool-gray">
             Total {showMonthlyPlan ? "(per month)" : "(per year)"}
           </p>
-          {selectedPlans.length > 0 ? (
+          {selectedPlan ? (
             <p className="font-bold text-lg text-purplish-blue">
               {showMonthlyPlan
-                ? `+$${selectedPlans[0].price.monthly + totalAddOnPrices}/mo`
-                : `+$${selectedPlans[0].price.yearly + totalAddOnPrices}/yr`}
+                ? `+$${selectedPlan.price.monthly + totalAddOnPrices}/mo`
+                : `+$${selectedPlan.price.yearly + totalAddOnPrices}/yr`}
             </p>
           ) : (
             ""

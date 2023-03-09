@@ -26,7 +26,7 @@ const PersonalInfo = () => {
 
   const validateInput = async () => {
     if (
-      userData.username.length <= 0 ||
+      userData.name.length <= 0 ||
       !(await validateEmail(userData.email)) ||
       userData.phone.length <= 0
     ) {
@@ -48,7 +48,7 @@ const PersonalInfo = () => {
           <div className="flex flex-col">
             <label className="text-marine-blue text-sm font-semibold flex items-center justify-between">
               <span>Name</span>
-              {invalidInput && userData.username <= 0 ? (
+              {invalidInput && userData.name <= 0 ? (
                 <span className="text-strawberry-red">
                   This field is required
                 </span>
@@ -58,11 +58,12 @@ const PersonalInfo = () => {
             </label>
             <input
               type="text"
-              value={userData.username}
-              onChange={(e) => setUserData("username", e.target.value)}
+              value={userData.name}
+              name="name"
+              onChange={(e) => setUserData(e.target.name, e.target.value)}
               placeholder="e.g. Stephen King"
               className={`px-3 py-2 border-2 rounded-md ${
-                invalidInput && userData.username <= 0
+                invalidInput && userData.name <= 0
                   ? "border-strawberry-red"
                   : "border-light-gray"
               } text-marine-blue cursor-pointer caret-marine-blue focus:outline-purplish-blue`}
@@ -82,7 +83,8 @@ const PersonalInfo = () => {
             <input
               type="email"
               value={userData.email}
-              onChange={(e) => setUserData("email", e.target.value)}
+              name="email"
+              onChange={(e) => setUserData(e.target.name, e.target.value)}
               placeholder="e.g. stephenking@lorem.com"
               className={`px-3 py-2 border-2 rounded-md ${
                 invalidInput && userData.email <= 0
@@ -105,7 +107,8 @@ const PersonalInfo = () => {
             <input
               type="tel"
               value={userData.phone}
-              onChange={(e) => setUserData("phone", e.target.value)}
+              name="phone"
+              onChange={(e) => setUserData(e.target.name, e.target.value)}
               placeholder="e.g. +1 234 567 890"
               className={`px-3 py-2 border-2 rounded-md ${
                 invalidInput && userData.phone <= 0

@@ -18,14 +18,14 @@ export const useUserAddOns = () => {
 
 const FormContext = ({ children }) => {
   const [data, setUserData] = useState({
-    username: "",
+    name: "",
     email: "",
     phone: "",
   });
 
-  const handleUserDataChange = (type, input) => {
+  const handleUserDataChange = (name, value) => {
     setUserData((prevUserData) => {
-      return { ...prevUserData, [type]: input };
+      return { ...prevUserData, [name]: value };
     });
   };
 

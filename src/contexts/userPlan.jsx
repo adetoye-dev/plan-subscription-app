@@ -39,7 +39,7 @@ const PlansContext = ({ children }) => {
     },
   ]);
 
-  const selectedPlans = plans.filter((item) => item.selected === true);
+  const selectedPlan = plans.find((item) => item.selected === true);
 
   const toggleSelect = (planName) => {
     setMonthlyPlans((prevMonthlyPlan) => {
@@ -61,7 +61,7 @@ const PlansContext = ({ children }) => {
       togglePlans: togglePlans,
       showMonthlyPlan: showMonthlyPlan,
       toggleSelect: toggleSelect,
-      selectedPlans: selectedPlans,
+      selectedPlan: selectedPlan,
     }),
     [plans, showMonthlyPlan]
   );

@@ -1,8 +1,12 @@
 import FormHeader from "./FormHeader";
 import { Prev, Confirm } from "./Buttons";
-import { Link, Navigate } from "react-router-dom";
-import { useUserAddOns, useUserPlans } from "../contexts/FormContext";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  useUserAddOns,
+  useUserData,
+  useUserPlans,
+} from "../contexts/FormContext";
+import server from "../apis/server";
 
 const AddOnSummaryCard = ({ title, price }) => {
   return (
@@ -16,7 +20,7 @@ const AddOnSummaryCard = ({ title, price }) => {
 const Summary = () => {
   const { selectedPlan, showMonthlyPlan } = useUserPlans();
   const { selectedAddOns } = useUserAddOns();
-  const [clear, setClear] = useState(false);
+  const [userData] = useUserData();
 
   const AddAllPrices = (arr) => {
     let totalPrice = 0;
@@ -31,13 +35,23 @@ const Summary = () => {
   const totalAddOnPrices =
     selectedAddOns.length > 0 ? AddAllPrices(selectedAddOns) : 0;
 
-  const submitForm = () => {
-    setClear(true);
+  const planId = showMonthlyPlan
+    ? selectedPlan.subscriptionId.monthly
+    : selectedPlan.subscriptionId.yearly;
+
+  const submitForm = async () => {
+    const res = await server.post("/api/payment/initialize", {
+      name: userData.name,
+      email: userData.email,
+      phone: userData.phone,
+      planId: planId,
+    });
+    window.location.replace(res.data.data.authorization_url);
+    console.log(res.data);
   };
 
   return (
     <>
-      {clear ? <Navigate to="/thank-you" /> : ""}
       <div className="form mx-4 md:m-0 px-5 py-7 md:p-0 rounded-lg md:rounded-none bg-white">
         <FormHeader
           title="Finishing up"

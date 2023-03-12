@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const ThankYou = () => {
   return (
     <div className="flex flex-col items-center justify-center md:h-full gap-5 mx-4 md:m-0 px-5 py-20 md:p-0 rounded-lg md:rounded-none bg-white">
@@ -10,6 +11,10 @@ const ThankYou = () => {
         platform. If you ever need support, please feel free to email us at
         support@loremgaming.com.
       </p>
+      <Link to="/" className="text-purplish-blue hover:text-marine-blue">
+        <i className="fa-solid fa-house"></i>
+        <span className="ml-1">Back to Home</span>
+      </Link>
     </div>
   );
 };

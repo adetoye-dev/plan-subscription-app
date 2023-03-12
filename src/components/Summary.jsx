@@ -44,10 +44,9 @@ const Summary = () => {
       name: userData.name,
       email: userData.email,
       phone: userData.phone,
-      planId: planId,
+      planId: "PLN_uvd3yircaj6g4nc",
     });
-    window.location.replace(res.data.data.authorization_url);
-    console.log(res.data);
+    res.data ? window.location.replace(res.data.data.authorization_url) : "";
   };
 
   return (

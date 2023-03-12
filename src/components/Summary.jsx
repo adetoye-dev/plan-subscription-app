@@ -1,11 +1,12 @@
 import FormHeader from "./FormHeader";
-import { Prev, Confirm } from "./Buttons";
+import { Prev } from "./Buttons";
 import { Link } from "react-router-dom";
 import {
   useUserAddOns,
   useUserData,
   useUserPlans,
 } from "../contexts/FormContext";
+import AlertDialog from "./Dialog";
 import server from "../apis/server";
 
 const AddOnSummaryCard = ({ title, price }) => {
@@ -116,7 +117,7 @@ const Summary = () => {
       </div>
       <div className="btns bg-white p-4 md:p-0 flex justify-between items-center">
         <Prev link="/add-ons" />
-        <Confirm action={submitForm} />
+        <AlertDialog submitForm={submitForm} />
       </div>
     </>
   );

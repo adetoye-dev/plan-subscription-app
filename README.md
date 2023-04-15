@@ -19,6 +19,7 @@ This is a simple service subscription app with email validation using an API and
 ### Links
 
 - Live Site URL: [View live site](https://plan-subscription.vercel.app)
+- API Code: [Visit GitHub Link](https://github.com/adetoye-dev/plan-subscription-api)
 
 ### Built with
 

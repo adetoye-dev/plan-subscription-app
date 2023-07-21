@@ -1,7 +1,11 @@
 import React from "react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
 
 export const userPlans = React.createContext();
+
+export const useUserPlans = () => {
+  return useContext(userPlans);
+};
 
 const PlansContext = ({ children }) => {
   const [showMonthlyPlan, setShowMonthlyPlan] = useState(true);

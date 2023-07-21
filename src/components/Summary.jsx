@@ -1,11 +1,9 @@
 import FormHeader from "./FormHeader";
 import { Prev } from "./Buttons";
 import { Link } from "react-router-dom";
-import {
-  useUserAddOns,
-  useUserData,
-  useUserPlans,
-} from "../contexts/FormContext";
+import { useUserData } from "../contexts/userData";
+import { useUserAddOns } from "../contexts/userAddOn";
+import { useUserPlans } from "../contexts/userPlan";
 import AlertDialog from "./Dialog";
 import server from "../apis/server";
 
@@ -45,7 +43,7 @@ const Summary = () => {
       name: userData.name,
       email: userData.email,
       phone: userData.phone,
-      planId: "PLN_uvd3yircaj6g4nc",
+      planId: "PLN_uvd3yircaj6g4nc", //use planId for real app
     });
     res.data ? window.location.replace(res.data.data.authorization_url) : "";
   };

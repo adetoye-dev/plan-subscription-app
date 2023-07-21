@@ -1,6 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 
 export const userAddOns = React.createContext();
+
+export const useUserAddOns = () => {
+  return useContext(userAddOns);
+};
 
 const AddOnsContext = ({ children }) => {
   const [addOns, setAddOns] = useState([

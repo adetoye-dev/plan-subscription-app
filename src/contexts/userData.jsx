@@ -1,7 +1,5 @@
 import React, { useContext, useState, useMemo } from "react";
-import { userPlans } from "./userPlan";
 import PlansContext from "./userPlan";
-import { userAddOns } from "./userAddOn";
 import AddOnsContext from "./userAddOn";
 
 const userData = React.createContext();
@@ -9,14 +7,8 @@ const userData = React.createContext();
 export const useUserData = () => {
   return useContext(userData);
 };
-export const useUserPlans = () => {
-  return useContext(userPlans);
-};
-export const useUserAddOns = () => {
-  return useContext(userAddOns);
-};
 
-const FormContext = ({ children }) => {
+const UserContext = ({ children }) => {
   const [data, setUserData] = useState({
     name: "",
     email: "",
@@ -40,4 +32,4 @@ const FormContext = ({ children }) => {
   );
 };
 
-export default FormContext;
+export default UserContext;

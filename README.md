@@ -10,14 +10,16 @@ This is a simple service subscription app with email validation using an API and
 
 - Enter their personal details
 - Select a desired plan
-- Select addional subscriptions 
+- Select additional subscriptions 
 - See a summary of their selections on the final step, before making payment
 - Pay / Subscribe to the selected plan.
+- Unsubscribe from active plans.
 
 
 ### Links
 
 - Live Site URL: [View live site](https://plan-subscription.vercel.app)
+- API Code: [Visit GitHub Link](https://github.com/adetoye-dev/plan-subscription-api)
 
 ### Built with
 
